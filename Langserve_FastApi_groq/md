@@ -1,1 +1,42 @@
+🚀 FastAPI + LangChain + Groq Translation API
 
+A simple production-ready API server built using FastAPI, LangChain, and Groq (LLaMA 3.1) that translates text into a specified language.
+
+This project demonstrates:
+
+LangChain runnable interfaces
+
+Prompt templates
+
+Output parsing
+
+LangServe route integration
+
+Environment-based API key management
+
+📌 Features
+
+🌍 Translate text into any language
+
+⚡ FastAPI backend
+
+🔗 LangChain runnable pipeline
+
+🤖 Groq LLaMA-3.1-8b model
+
+🧩 LangServe automatic route exposure
+
+🔐 Secure API key loading using .env
+
+🏗️ Architecture
+User Request
+      ↓
+FastAPI Endpoint (/chain)
+      ↓
+LangChain Prompt Template
+      ↓
+Groq LLM (LLaMA 3.1 8B)
+      ↓
+Output Parser
+      ↓
+JSON Response
