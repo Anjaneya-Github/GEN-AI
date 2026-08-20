@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+requests
+python-dotenv
+jinja2
+streamlit
+langchain
+langchain-community
+langchain-core
+langchain-google-genai>=1.0.3
+google-generativeai>=0.5.2
+chromadb
+huggingface-hub
+sentence-transformers
+gTTS

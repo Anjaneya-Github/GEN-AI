@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending News</title>
+    <!-- Using Bootstrap for quick styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="mb-4 text-center">Trending News</h1>
+        
+        <!-- Filter Form -->
+        <form method="get" action="/" class="row g-3 mb-5 justify-content-center">
+            <div class="col-auto">
+                <select name="country" class="form-select">
+                    <option value="in" {% if country == 'in' %}selected{% endif %}>India</option>
+                    <option value="us" {% if country == 'us' %}selected{% endif %}>USA</option>
+                    <option value="gb" {% if country == 'gb' %}selected{% endif %}>UK</option>
+                    <option value="au" {% if country == 'au' %}selected{% endif %}>Australia</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <select name="category" class="form-select">
+                    <option value="" {% if not category %}selected{% endif %}>All Categories</option>
+                    <option value="general" {% if category == 'general' %}selected{% endif %}>General</option>
+                    <option value="technology" {% if category == 'technology' %}selected{% endif %}>Technology</option>
+                    <option value="business" {% if category == 'business' %}selected{% endif %}>Business</option>
+                    <option value="sports" {% if category == 'sports' %}selected{% endif %}>Sports</option>
+                    <option value="entertainment" {% if category == 'entertainment' %}selected{% endif %}>Entertainment</option>
+                    <option value="health" {% if category == 'health' %}selected{% endif %}>Health</option>
+                    <option value="science" {% if category == 'science' %}selected{% endif %}>Science</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </form>
+
+        <!-- Error Message -->
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <!-- News Grid -->
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for article in articles %}
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    {% if article.image %}
+                    <img src="{{ article.image }}" class="card-img-top" alt="News Image" style="height: 200px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text text-muted small">{{ article.publishedAt[:10] }}</p>
+                        <p class="card-text">{{ article.description }}</p>
+                        <a href="{{ article.url }}" target="_blank" class="btn btn-sm btn-outline-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12 text-center">
+                <p class="text-muted">No articles found.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
